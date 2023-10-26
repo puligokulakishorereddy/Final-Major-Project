@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<button onclick="enterFullScreen()">Enter Full Screen</button>
+
+<button onclick="closeFullScreen()">Close Full Screen</button>
+<script>
+    var isfullscreen=false;
+    var spoofDetected=false;
+    elem=this.document.documentElement;
+    function enterFullScreen ()
+      {
+        if (this.elem.requestFullscreen)
+        {
+          this.elem.requestFullscreen();
+        } else if (this.elem.mozRequestFullScreen) {
+          /* Firefox */
+          this.elem.mozRequestFullScreen();
+        } else if (this.elem.webkitRequestFullscreen) {
+          /* Chrome, Safari and Opera */
+          this.elem.webkitRequestFullscreen();
+        } else if (this.elem.msRequestFullscreen) {
+          /* IE/Edge */
+          this.elem.msRequestFullscreen();
+        }
+        this.isfullscreen=true;
+        this.spoofDetected=false;
+      }
+
+      function closeFullScreen()
+      {
+        if (this.document.exitFullscreen) {
+          this.document.exitFullscreen();
+        } else if (this.document.mozCancelFullScreen) {
+          /* Firefox */
+          this.document.mozCancelFullScreen();
+        } else if (this.document.webkitExitFullscreen) {
+          /* Chrome, Safari and Opera */
+          this.document.webkitExitFullscreen();
+        } else if (this.document.msExitFullscreen) {
+          /* IE/Edge */
+          this.document.msExitFullscreen();
+        }
+        this.isfullscreen=false;
+      }
+
+    //   // spoof Detection
+    //   @HostListener('document:fullscreenchange', ['$event'])
+    //   @HostListener('document:webkitfullscreenchange', ['$event'])
+    //   @HostListener('document:mozfullscreenchange', ['$event'])
+    //   @HostListener('document:MSFullscreenChange', ['$event'])
+    //   fullscreenmodes(){
+    //         this.chkScreenMode();
+    //   }
+    //   chkScreenMode(){
+    //     if(document.fullscreenElement){
+    //       //fullscreen
+    //       this.isfullscreen = true;
+    //     }else{
+    //       //not in full screen
+
+    //       this.isfullscreen = false;
+    //       this.spoofDetected=true;
+    //       //alert("Spoof detected");
+    //     }
+    //   }
+
+
+    //     // Spoof detection
+    //   @HostListener('document:visibilitychange',['$event'])
+    //   newTabOpen()
+    //   {
+    //     console.log("New Tab Opened");
+    //     //alert('console.log("New Tab Opened");')
+    //     this.spoofDetected=true;
+    //   }
+
+    //   //Online event or Offiline event
+    //   @HostListener('window:offline', ['$event'])
+    //   OfflineEvent(event: Event) {
+    //    console.log(event);
+    //   }
+
+    //   @HostListener('window:online', ['$event'])
+    //   OnlineEvent(event: Event)
+    //   {
+    //     console.log(event);
+    //     console.log("Connected");
+    //   }
+
+
+        // new tab detection
+        document.addEventListener("visibilitychange", (event) => {
+        alert("New tab Opened");
+        if (document.visibilityState == "visible") {
+            console.log("tab is active")
+        } else {
+            console.log("tab is inactive")
+        }
+        });
+
+    document.addEventListener("fullscreenchange", (event) => {
+    
+                this.chkScreenMode();
+
+    });
+    document.addEventListener("webkitfullscreenchange", (event) => {
+        
+                this.chkScreenMode();
+        
+    });
+    document.addEventListener("mozfullscreenchange", (event) => {
+       
+                this.chkScreenMode();
+        
+    });
+    document.addEventListener("MSFullscreenChange", (event) => {
+        
+                this.chkScreenMode();
+        
+    });
+
+      function chkScreenMode()
+      {
+        if(document.fullscreenElement){
+          //fullscreen
+          this.isfullscreen = true;
+        }else{
+          //not in full screen
+          this.isfullscreen = false;
+          this.spoofDetected=true;
+          alert("Spoof detected full screen exited");
+        }
+      }        
+
+        // document.addEventListener("window:offline", (event) => {
+        //  console.log("Internet Connected");
+        //     alert("Internet Connected");
+        // });
+
+</script>

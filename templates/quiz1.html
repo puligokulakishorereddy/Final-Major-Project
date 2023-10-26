@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<style>
+    .lg:hover{
+        opacity: 80%;
+
+    }
+    .lg{
+       background-color: black;
+    }
+    .b,.c,.d,.e,.f,.g,.h,.i,.j,.k,.j1{
+        display:none;
+    }
+    
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:650px;
+    }
+    @media only screen and (max-width: 600px) {
+            #aa{
+                height: 600px;
+                width: 400px;
+            }
+            #jj1{
+                position: absolute;
+                top:280px;
+                left: 130px;
+            }
+}
+@media only screen and (min-width: 600px) {
+            #aa{
+                height: 600px;
+                width: 800px;
+            }
+            #jj1{
+                position: absolute;
+                top:250px;
+                left: 620px;
+                
+            }
+            #jj{
+                width:800px;
+            }
+}
+
+#ww{
+    background-color: black;
+}
+#aa{
+
+display: none;
+position: absolute;
+top: 226px;
+}
+.ha{
+    position: absolute;
+    top:35px;
+    justify-content: center;
+    font-size : 100px;
+}
+#B{
+    background-color: black;
+}
+#strt{
+    display: none;
+}
+</style>
+</head>
+
+ <!-- Buttons -->
+<button onclick="enterFullScreen()" style="display: none;">Enter Full Screen</button>
+
+<button onclick="closeFullScreen()" style="display: none;">Close Full Screen</button>
+
+
+<body class="" style="background-image: url('{{ url_for('static', filename='images/q5.jpg') }}');">
+<section id="entire" style="display: none;">
+<p class="text-light fw-bolder" id="final">
+
+</p>
+    <div class="container">
+        
+        <div class="row justify-content-center align-items-center a1" id="aa1" style="height:400px;width:600px;" >
+    
+            <div class="col-12">
+                <div class="d-flex justify-content-center"><p class="text-light ha">?</p></div>
+                <div class="card shadow-lg bg-dark">
+                    <div class="card-body ">
+                        <div class="card-title inline"><h6 class="d-inline text-light d-flex justify-content-center">Enter your name</h6></div>
+                        <div class="card-text">
+                            <ul class="list-group bg-dark">
+                                <li class="list-group-item lg text-light" id="A">
+                                    <div class="row ">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <input type="text" class="form-control" style="width: 200px;" placeholder="Enter name...." id="sid" onkeyup="onc()">
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+                                <li class="list-group-item lg text-light">
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <input type="text" class="form-control" style="width: 200px;" placeholder="Enter roll number...." id="roll">
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+
+                                <li class="list-group-item text-light d-flex justify-content-center" id="B">
+                                <button class="btn btn-primary small" onclick="enterFullScreen()" id="strt">start quiz</button>
+                                </li>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+        <div class="row justify-content-center align-items-center a" id="aa" style="height: 400px;">
+            
+            <div class="col-12">
+                <div class="card shadow-lg bg-dark">
+            <form action="/process_data" method="POST">
+                
+                <input type="text" id="nam" name="nam" style="display: none;">
+                <input type="text" id="scor" name="scor" style="display: none;">
+                <input type="text" id="rol" name="rol" style="display: none;">
+            <div class="card-body ">
+                <div class="card-title inline"><h6 class="d-inline text-light small">MAC os is developed by which company ?</h6><p class="d-inline float-end fw-italic small border text-light border-light">1/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group bg-dark">
+                        <li class="list-group-item lg text-light border-light" id="B12" onclick="ck2()">IBM </li>
+                        <li class="list-group-item lg text-light  border-light " id="A12" onclick="ck1c()">APPLE </li>
+                        <li class="list-group-item lg text-light border-light" id="C" onclick="ck3()">MICROSOFT </li>
+                        <li class="list-group-item lg text-light border-light"  id="D" onclick="ck4()">GOOGLE </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="row justify-content-center align-items-center b" id="bb" style="width:800px;">
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title "><h6 class="d-inline text-light small">What is the tallest mountain in the world?</h6><p class="d-inline float-end small border text-light border-light">2/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="E" onclick="ck5()">Mount Kilimanjaro</li>
+                        <li class="list-group-item lg text-light border-light" id="F" onclick="ck6c()">Mount Everest</li>
+                        <li class="list-group-item lg text-light border-light" id="G" onclick="ck7()">Mount McKinley (Denali)</li>
+                        <li class="list-group-item lg text-light border-light" id="H" onclick="ck8()">Mount Fuji</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<div class="row justify-content-center align-items-center c " id="cc" style="width:800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light small">what is the full form of PDF ?</h6><p class="d-inline float-end small border text-light border-light">3/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="I" onclick="ck9()">printed document format</li>
+                        <li class="list-group-item lg text-light border-light" id="J" onclick="ck10()">public document format</li>
+                        <li class="list-group-item lg text-light border-light" id="K" onclick="ck11c()">portable document format</li>
+                        <li class="list-group-item lg text-light border-light" id="L" onclick="ck12()">published document format</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center d " id="dd" style="width:800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light small">Android is developed by ?<p class="d-inline border float-end small text-light border border-light">4/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="M" onclick="ck13()">APPLE</li>
+                        <li class="list-group-item lg text-light border-light" id="N" onclick="ck14c()">GOOGLE</li>
+                        <li class="list-group-item lg text-light border-light" id="O" onclick="ck15()">MICROSOFT</li>
+                        <li class="list-group-item lg text-light border-light" id="P" onclick="ck16()">SAMSUNG</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center  e"  id="ee" style="width:800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">    
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light">Which planet is known as the "Red Planet"?</h6><p class="d-inline float-end small border text-light border-light">5/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="Q" onclick="ck17c()">Mars</li>
+                        <li class="list-group-item lg text-light border-light" id="R" onclick="ck18()">Venus</li>
+                        <li class="list-group-item lg text-light border-light" id="S" onclick="ck19()">Jupiter</li>
+                        <li class="list-group-item lg text-light border-light" id="T" onclick="ck20()">Saturn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center f "  id="ff" style="width: 800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light">what is scuba diving ?</h6><p class="d-inline float-end small border text-light border-light">6/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group"> 
+                        <li class="list-group-item lg small text-light border-light" id="U" onclick="ck21c()">The sport of swimming under water with special equipment for breathing</li>
+                        <li class="list-group-item lg small text-light border-light" id="V" onclick="ck22()">The sport or activity of diving into water from a diving board</li>
+                        <li class="list-group-item lg small text-light border-light" id="W" onclick="ck23()">The sport of jumping out from plane with parachute</li>
+                        <li class="list-group-item lg small text-light border-light" id="X" onclick="ck24()">an individual or team racing sport in water</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center g" id="gg" style="width: 800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light">What is Earth's galaxy ?</h6><p class="d-inline float-end small border text-light border-light">7/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="Y" onclick="ck25()">whirl pool galaxy</li>
+                        <li class="list-group-item lg text-light border-light" id="Z" onclick="ck26c()">milky way galaxy</li>
+                        <li class="list-group-item lg text-light border-light" id="AA" onclick="ck27()">sun flower galaxy</li>
+                        <li class="list-group-item lg text-light border-light" id="BB" onclick="ck28()">cigar galaxy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center h" id="hh" style="width: 800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light small">__% of oceans are explored by humans ?</h6><p class="d-inline float-end small border text-light border-light">8/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="CC" onclick="ck29()">20%</li>
+                        <li class="list-group-item lg text-light border-light" id="DD" onclick="ck30()">70%</li>
+                        <li class="list-group-item lg text-light border-light" id="EE" onclick="ck31()">30%</li>
+                        <li class="list-group-item lg text-light border-light" id="FF" onclick="ck32c()">5%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center i " id="ii" style="width: 800px;">
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title"><h6 class="d-inline text-light">What is the largest planet in our solar system?</h6><p class="d-inline float-end small border text-light border-light">9/10</p></div>
+                <div class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="GG" onclick="ck33c()">Jupiter</li>
+                        <li class="list-group-item lg text-light border-light" id="HH" onclick="ck34()">Earth</li>
+                        <li class="list-group-item lg text-light border-light" id="II" onclick="ck35()">Mars</li>
+                        <li class="list-group-item lg text-light border-light" id="JJ" onclick="ck36()">Saturn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="row justify-content-center align-items-center j" id="jj" >
+    
+    <div class="col-12">
+        <div class="card shadow-lg bg-dark">
+            <div class="card-body">
+                <div class="card-title "><h6 class="d-inline text-light text-light">who is richest, ratan tata or mukesh ambani ?</h6><p class="d-inline sa text-light small border text-light float-end ms-5 mt-4 border-light">10/10</p></div>
+                <div class="card-text">
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item lg text-light border-light" id="KK" onclick="ck37()">Ratan TaTa</li>
+                        <li class="list-group-item lg text-light border-light" id="LL" onclick="ck38c()">Mukesh ambani</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+    <div class="row j1 " id="jj1">
+        <!-- <div class=" d-flex justify-content-center align-items-center"> -->
+            <div class="col-12">
+                <div class="card shadow-lg bg-dark">
+                    <div class="card-body">
+                        <div class="card-title"><h6 class="d-inline text-light">Submit All Your Options Here, </h6>
+                            <!-- <p class=" text-light ms-5" id="GG1"></p>
+                            <p class=" ms-4 text-light fw-bolder bg-dark mt-2 mb-0"><input type="submit" name="" id="" class="btn-primary"></p>
+                         -->
+                         <br><br>
+                         <input type="submit" name="" id="" class="btn btn-primary ms-5" value="submit">
+                        </div>
+                        <!-- <div class="card-text">
+                            <ul class="list-group">
+                                <li class="list-group-item lg text-light mt-0" id="" ><p class="ms-2 d-inline"></p><p class="d-inline text-light ms-4" id="HH1"></p> </li>
+                                
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        <script src="{{ url_for('static', filename='js/quickjs.js') }}"></script>
+    <script>
+        // AOS.init();
+      </script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+<div style="position: absolute;top: 515px;left: 1200px;" >
+
+    <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Live Video Feed" height="180px" width="300px">
+</div>
+
+</form>
+
+</section>
+
+<section id="blankpage" style="height: 500px; display: flex; justify-content: center;align-items: center;">
+    <p class="text-light">Please enter full screen to continue</p> <br>
+    <button class="btn btn-primary" onclick="enterFullScreen()">Please Enter To Full Screen</button>
+
+</section>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Test -->
+<script>
+
+var isfullscreen=false;
+var spoofDetected=false;
+elem=this.document.documentElement;
+
+function enterFullScreen()
+  {
+    document.getElementById('aa1').style.display='none';
+    a.style.display='block';
+    if (this.elem.requestFullscreen)
+    {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+    this.isfullscreen=true;
+    this.spoofDetected=false;
+}
+
+  function closeFullScreen()
+  {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
+    this.isfullscreen=false;
+  }
+
+//   // spoof Detection
+//   @HostListener('document:fullscreenchange', ['$event'])
+//   @HostListener('document:webkitfullscreenchange', ['$event'])
+//   @HostListener('document:mozfullscreenchange', ['$event'])
+//   @HostListener('document:MSFullscreenChange', ['$event'])
+//   fullscreenmodes(){
+//         this.chkScreenMode();
+//   }
+//   chkScreenMode(){
+//     if(document.fullscreenElement){
+//       //fullscreen
+//       this.isfullscreen = true;
+//     }else{
+//       //not in full screen
+
+//       this.isfullscreen = false;
+//       this.spoofDetected=true;
+//       //alert("Spoof detected");
+//     }
+//   }
+
+
+//     // Spoof detection
+//   @HostListener('document:visibilitychange',['$event'])
+//   newTabOpen()
+//   {
+//     console.log("New Tab Opened");
+//     //alert('console.log("New Tab Opened");')
+//     this.spoofDetected=true;
+//   }
+
+//   //Online event or Offiline event
+//   @HostListener('window:offline', ['$event'])
+//   OfflineEvent(event: Event) {
+//    console.log(event);
+//   }
+
+//   @HostListener('window:online', ['$event'])
+//   OnlineEvent(event: Event)
+//   {
+//     console.log(event);
+//     console.log("Connected");
+//   }
+
+
+    // new tab detection
+    document.addEventListener("visibilitychange", (event) => {
+    alert("New tab Opened");
+    if (document.visibilityState == "visible") {
+        console.log("tab is active")
+    } else {
+        console.log("tab is inactive")
+    }
+    });
+
+document.addEventListener("fullscreenchange", (event) => {
+
+            this.chkScreenMode();
+
+});
+document.addEventListener("webkitfullscreenchange", (event) => {
+    
+            this.chkScreenMode();
+    
+});
+document.addEventListener("mozfullscreenchange", (event) => {
+   
+            this.chkScreenMode();
+    
+});
+document.addEventListener("MSFullscreenChange", (event) => {
+    
+            this.chkScreenMode();
+    
+});
+
+  function chkScreenMode()
+  {
+    if(document.fullscreenElement){
+      //fullscreen
+      this.isfullscreen = true;
+    }else{
+      //not in full screen
+      this.isfullscreen = false;
+      this.spoofDetected=true;
+      
+      alert("Spoof detected full screen exited");
+
+    }
+  }   
+</script>
+
+</html>
